@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pure Javascript Available/Selected Options</title>
+    </head>
+    <body>
+        <h1 style="text-align: center;">Pure Javascript Available/Selected Options</h1>
+        <p style="text-align: right;">
+            Created by <a href="http://www.rafaelamorim.com.br" target="_blank">www.rafaelamorim.com.br</a>.
+        </p>
+		<p>After a search without success to find an example to script (without jQuery and/or another plugins) and based in w3docs.com page, I created this one.</p>
+        <table border="0">
+            <tr>
+                <th style="width: 120px;">Available Itens</th>
+                <th>&nbsp;</th>
+                <th style="width: 120px;">Selected Itens</th>
+            </tr>
+            <tr>
+                <td>
+                    <select id="listAvailable" name="listAvailable" multiple size="5" style="width: 100%">
+                        <option value="1">Value 1</option>
+                        <option value="2">Value 2</option>
+                        <option value="3">Value 3</option>
+                        <option value="4">Value 4</option>
+                        <option value="5">Value 5</option>
+                        <option value="6">Value 6</option>
+                        <option value="7">Value 7</option>
+                        <option value="8">Value 8</option>
+                        <option value="9">Value 9</option>
+                        <option value="10">Value 10</option>
+                    </select>
+                </td>
+                <td style="text-align: center;">
+                    <button id="btnAdd" title="Add selected itens">></button>
+                    <br/>
+                    <button id="btnRemove" title="Remove selected itens"><</button>
+                </td>
+                <td>
+                    <select id="listSelected" name="listSelected" size="5" style="width: 100%">
+
+                    </select>
+                </td>
+            </tr>
+        </table>
+        
+        <p>References:</p>
+        <ul>
+            <li><a href="https://www.w3docs.com/snippets/javascript/how-to-add-and-remove-multiple-or-single-select-options-using-jquery.html" target="_blank">How to Add and Remove Multiple or Single Select Options using jQuery</a></li>
+            <li><a href="https://www.w3schools.com/tags/att_select_multiple.asp">HTML &#60;select&#62; multiple Attribute</a></li>
+        </ul>
+        
+        <script>
+            const btnAdd = document.querySelector('#btnAdd');
+            const btnRemove = document.querySelector('#btnRemove');
+            const listSel = document.querySelector('#listSelected');
+            const listAva = document.querySelector('#listAvailable');
+
+            // Add selected option
+            btnAdd.onclick = (e) => {
+                e.preventDefault();
+                let selected = [];
+                //search
+                for (let i = 0; i < listAva.options.length; i++) {
+                    selected[i] = listAva.options[i].selected;
+                }
+                // move from available to selected list 
+                let index = listAva.options.length;
+                while (index--) {
+                    if (selected[index]) {
+                        listSel.add(listAva.options[index]);
+                    }
+                }
+                //clear selection on listSelected options
+                listSel.selectedIndex = listSel.options.length;
+                //clear selection on listAvailable options
+                listAva.selectedIndex = listAva.options.length;
+            };
+
+            //Remove selected option
+            btnRemove.onclick = (e) => {
+                e.preventDefault();
+                let selected = [];
+
+                for (let i = 0; i < listSel.options.length; i++) {
+                    selected[i] = listSel.options[i].selected;
+                }
+                // move from selected to available list 
+                let index = listSel.options.length;
+                while (index--) {
+                    if (selected[index]) {
+                        listAva.add(listSel.options[index]);
+                    }
+                }
+                //clear selection on listSelected options
+                listSel.selectedIndex = listSel.options.length;
+                //clear selection on listAvailable options
+                listAva.selectedIndex = listAva.options.length;
+            };
+        </script>
+    </body>
+</html>
