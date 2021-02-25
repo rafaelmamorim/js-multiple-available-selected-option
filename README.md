@@ -4,5 +4,5 @@ After a search without success to find an example to script (without jQuery and/
 
 Demo are available in http://www.rafaelamorim.com.br/select.html
 
-##References
+## References
 - https://www.w3docs.com/snippets/javascript/how-to-add-and-remove-multiple-or-single-select-options-using-jquery.html
